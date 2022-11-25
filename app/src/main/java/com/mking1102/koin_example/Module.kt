@@ -4,5 +4,5 @@ import org.koin.dsl.module
 
 
 val dependency = module{
-    single { params-> TestDependency(params.get()) }
+    single {  TestDependency() }
 }

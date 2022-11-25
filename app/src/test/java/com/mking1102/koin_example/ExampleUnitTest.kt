@@ -1,17 +1,19 @@
 package com.mking1102.koin_example
 
 import org.junit.Test
+import org.koin.core.context.startKoin
+import org.koin.test.KoinTest
+import org.koin.test.get
+import kotlin.test.assertSame
 
-import org.junit.Assert.*
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
-class ExampleUnitTest {
+class ExampleUnitTest : KoinTest {
     @Test
     fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+        startKoin {
+            modules(dependency)
+        }
+        val dependency: TestDependency = get()
+        assertSame(dependency.bark(), "Woof")
     }
 }
